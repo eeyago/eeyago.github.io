@@ -22,9 +22,7 @@ gulp.task('less', function() {
         .pipe(less())
         .pipe(header(banner, { pkg: pkg }))
         .pipe(gulp.dest('css'))
-        .pipe(browserSync.reload({
-            stream: true
-        }))
+        .pipe(browserSync.stream())
 });
 
 // Minify compiled CSS
@@ -33,9 +31,7 @@ gulp.task('minify-css', ['less'], function() {
         .pipe(cleanCSS({ compatibility: 'ie8' }))
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('css'))
-        .pipe(browserSync.reload({
-            stream: true
-        }))
+        .pipe(browserSync.stream())
 });
 
 // Minify JS
@@ -45,9 +41,7 @@ gulp.task('minify-js', function() {
         .pipe(header(banner, { pkg: pkg }))
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('js'))
-        .pipe(browserSync.reload({
-            stream: true
-        }))
+        .pipe(browserSync.stream())
 });
 
 // Copy vendor libraries from /node_modules into /vendor
